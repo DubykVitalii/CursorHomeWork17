@@ -4,15 +4,14 @@ import dao.Dao;
 import model.User;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Repository;
 import util.HibernateSessionFactoryUtil;
 
 import java.util.List;
 
-@Component
+@Repository
 public class UserDaoImlp implements Dao<User> {
-    @Autowired
+
     public UserDaoImlp() {
     }
 
@@ -50,7 +49,7 @@ public class UserDaoImlp implements Dao<User> {
 
     @Override
     public List<User> findAll() {
-        List<User> users = (List<User>) HibernateSessionFactoryUtil.getSessionFactory().openSession().createQuery("From User", User.class).list();
+        List<User> users = HibernateSessionFactoryUtil.getSessionFactory().openSession().createQuery("From User", User.class).list();
         return users;
     }
 

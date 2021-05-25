@@ -4,15 +4,14 @@ import dao.Dao;
 import model.Book;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Repository;
 import util.HibernateSessionFactoryUtil;
 
 import java.util.List;
 
-@Component
+@Repository
 public class BookDaoImpl implements Dao<Book> {
-    @Autowired
+
     public BookDaoImpl() {
     }
 
@@ -50,7 +49,7 @@ public class BookDaoImpl implements Dao<Book> {
 
     @Override
     public List<Book> findAll() {
-        List<Book> books = (List<Book>) HibernateSessionFactoryUtil.getSessionFactory().openSession().createQuery("FROM Book", Book.class).list();
+        List<Book> books =  HibernateSessionFactoryUtil.getSessionFactory().openSession().createQuery("FROM Book", Book.class).list();
         return books;
     }
 

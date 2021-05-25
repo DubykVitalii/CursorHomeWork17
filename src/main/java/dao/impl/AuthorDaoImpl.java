@@ -2,19 +2,17 @@ package dao.impl;
 
 import dao.Dao;
 import model.Author;
-import model.Book;
 import org.hibernate.Session;
 import org.hibernate.Transaction;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Repository;
 import util.HibernateSessionFactoryUtil;
 
 import java.util.List;
 
-@Component
+@Repository
 public class AuthorDaoImpl implements Dao<Author> {
 
-    @Autowired
+
     public AuthorDaoImpl() {
     }
 
@@ -52,7 +50,7 @@ public class AuthorDaoImpl implements Dao<Author> {
 
     @Override
     public List<Author> findAll() {
-        List<Author> authors = (List<Author>) HibernateSessionFactoryUtil.getSessionFactory().openSession().createQuery("From User", Author.class).list();
+        List<Author> authors =  HibernateSessionFactoryUtil.getSessionFactory().openSession().createQuery("From User", Author.class).list();
         return authors;
     }
 }
